@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">CryptoCheck</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="bitcoin_exchange_btn">Bitcoin Exchange Rate</string>
+    <string name="ethereum_exchange_btn">Ethereum Exchange Rate</string>
+    <string name="empty_message">There are no cards available</string>
+    <string name="network_error_message">Unable to connect to the Internet…</string>
+
+    <string-array name="currency_name_array">
+        <item>NGN</item>
+        <item>USD</item>
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>JPY</item>
+        <item>CNY</item>
+        <item>CAD</item>
+        <item>AUD</item>
+        <item>CHF</item>
+        <item>SGD</item>
+        <item>INR</item>
+        <item>MYR</item>
+        <item>KES</item>
+        <item>ZAR</item>
+        <item>GHS</item>
+        <item>RUB</item>
+        <item>MXN</item>
+        <item>QAR</item>
+        <item>EGP</item>
+        <item>ILS</item>
+    </string-array>
+
+    <string-array name="currency_fullname_array">
+        <item>Nigerian Naira</item>
+        <item>US Dollar</item>
+        <item>Euro</item>
+        <item>British Pound</item>
+        <item>Japanese Yen</item>
+        <item>Chinese Yuan Renminbi</item>
+        <item>Canadian Dollar</item>
+        <item>Australian Dollar</item>
+        <item>Swiss Franc</item>
+        <item>Singapore Dollar</item>
+        <item>India Rupee</item>
+        <item>Malaysian Ringgit</item>
+        <item>Kenyan Shilling</item>
+        <item>SA Rand</item>
+        <item>Ghanaian Cedi</item>
+        <item>Russian Ruble</item>
+        <item>Mexican Peso</item>
+        <item>Qatar Riyal</item>
+        <item>Egyptian Pound</item>
+        <item>Israeli Shekel</item>
+    </string-array>
+</resources>

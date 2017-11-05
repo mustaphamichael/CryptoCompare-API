@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:cardElevation="0.5dp"
+        android:layout_margin="3dp"
+        >
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/country_flag"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/bitcoin_icon"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <TextView
+                android:id="@+id/currency_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD"
+                android:textAppearance="?android:textAppearanceMedium"
+                app:layout_constraintLeft_toRightOf="@id/country_flag"
+                app:layout_constraintRight_toLeftOf="@id/exchange_rate"/>
+
+            <TextView
+                android:id="@+id/currency_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="US Dollar"
+                android:textAppearance="?android:textAppearanceSmall"
+                app:layout_constraintLeft_toLeftOf="@id/currency_code"
+                app:layout_constraintRight_toRightOf="@id/currency_code"
+                app:layout_constraintTop_toBottomOf="@id/currency_code"/>
+
+            <TextView
+                android:id="@+id/exchange_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textAppearance="?android:textAppearanceMedium"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
