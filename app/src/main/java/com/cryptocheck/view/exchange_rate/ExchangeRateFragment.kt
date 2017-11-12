@@ -55,12 +55,15 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
         exchangeRateAdapter = ExchangeRateAdapter(context, exchangeRates)
         recyclerView.adapter = exchangeRateAdapter
 
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         presenter = ExchangeRatePresenter(this, cryptoCurrency)
         this.setPresenter(presenter)
         presenter.getExchangeList()
         progressBar.visibility = View.VISIBLE
-
-        return view
     }
 
     override fun onResume() {
@@ -100,6 +103,7 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
         progressBar.visibility = View.GONE
     }
 
+
     /**
      * Display view for empty server response
      */
@@ -137,7 +141,7 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
 
     override fun onFailure(errorMessage: String) {
         if (view != null){
-            emptyMessageListener()
+            if (this.exchangeRates.isEmpty()) emptyMessageListener()
             Snackbar.make(view!!, getString(R.string.network_error_message), Snackbar.LENGTH_LONG).show()
         }
     }
