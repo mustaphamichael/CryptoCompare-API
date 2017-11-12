@@ -14,7 +14,6 @@ import com.cryptocheck.R
 import com.cryptocheck.contract.ExchangeRateContract
 import com.cryptocheck.model.ExchangeRate
 import com.cryptocheck.presenter.ExchangeRatePresenter
-import com.cryptocheck.util.ViewUtil
 import com.cryptocheck.view.exchange_rate.adapter.ExchangeRateAdapter
 import com.cryptocheck.view.main.MainActivity
 import com.cryptocheck.view.main.ToggleFragments
@@ -59,7 +58,7 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
         presenter = ExchangeRatePresenter(this, cryptoCurrency)
         this.setPresenter(presenter)
         presenter.getExchangeList()
-        ViewUtil.toggleView(progressBar)
+        progressBar.visibility = View.VISIBLE
 
         return view
     }
@@ -92,7 +91,7 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
         if (context is ToggleFragments) {
             callback = context
         } else {
-            throw RuntimeException(context.toString() + " must implement ToggleFragments Interface")
+            throw RuntimeException(context.toString() + " must implement ToggleFragments Interface") as Throwable
         }
     }
 
@@ -105,12 +104,13 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
      * Display view for empty server response
      */
     private fun emptyMessageListener(){
-        ViewUtil.toggleView(progressBar)
-        ViewUtil.toggleView(emptyMsg)
+        progressBar.visibility = View.GONE
+        emptyMsg.visibility = View.VISIBLE
         setHasOptionsMenu(false)
+
         refreshButton.setOnClickListener {
-            ViewUtil.toggleView(progressBar)
-            ViewUtil.toggleView(emptyMsg)
+            progressBar.visibility = View.VISIBLE
+            emptyMsg.visibility = View.GONE
             setHasOptionsMenu(true)
             presenter.getExchangeList()
         }
@@ -125,16 +125,14 @@ class ExchangeRateFragment : Fragment(), ExchangeRateContract.View {
     }
 
     override fun onSuccess(exchangeRate: ArrayList<ExchangeRate>) {
-        this.exchangeRates = exchangeRate
         if (exchangeRate.isNotEmpty()){
-            ViewUtil.toggleView(progressBar)
+            exchangeRate.forEach { if (!this.exchangeRates.contains(it)) this.exchangeRates.add(it) }
+            progressBar.visibility = View.GONE
             setHasOptionsMenu(true)
+            exchangeRateAdapter = ExchangeRateAdapter(context, exchangeRates)
+            recyclerView.adapter = exchangeRateAdapter
+            exchangeRateAdapter?.notifyDataSetChanged()
         }
-        else{
-            emptyMessageListener()
-        }
-        exchangeRateAdapter = ExchangeRateAdapter(context, exchangeRates)
-        recyclerView.adapter = exchangeRateAdapter
     }
 
     override fun onFailure(errorMessage: String) {
